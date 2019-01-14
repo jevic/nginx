@@ -1,5 +1,5 @@
-#variables:
-#  Tags: v39
+variables:
+  Tags: v1
 
 stages:
   - build
@@ -10,11 +10,11 @@ build:
   script:
     - docker --version
     - uname -a
-#    - echo "$repo:$Tags"
-#    - sudo docker login -u "$USER" -p "$PASSWD" $registry
-#    - sudo docker build --pull -t "$repo:$Tags" .
-#    - docker push "$repo:$Tags"
-#    - sudo docker rmi -f "$repo:$Tags"
+    - echo "$registry/$repo:$Tags"
+    - sudo docker login -u "$USER" -p "$PASSWD" $registry
+#    - sudo docker build --pull -t "$registry/$repo:$Tags" .
+#    - docker push "$registry/$repo:$Tags"
+#    - sudo docker rmi -f "$registry/$repo:$Tags"
   tags:
     - devops
 # 升级rancher服务
