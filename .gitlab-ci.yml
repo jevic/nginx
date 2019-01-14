@@ -13,10 +13,10 @@ build:
     - uname -a
     - Image="$registry/$repo/$app:$Tags"
     - echo $Image
-    - docker login -u "$USER" -p "$PASSWD" $registry
-#    - docker build --pull -t "$registry/$repo:$Tags" .
-#    - docker push "$registry/$repo:$Tags"
-#    - docker rmi -f "$registry/$repo:$Tags"
+    - sudo docker login -u "$USER" -p "$PASSWD" $registry
+#    - sudo docker build --pull -t "$registry/$repo:$Tags" .
+#    - sudo docker push "$registry/$repo:$Tags"
+#    - sudo docker rmi -f "$registry/$repo:$Tags"
   tags:
     - devops
 # 升级rancher服务
