@@ -1,0 +1,24 @@
+#variables:
+#  Tags: v39
+
+stages:
+  - build
+#  - release
+# 构建镜像
+build:
+  stage: build
+  script:
+    - docker --version
+    - uname -a
+#    - echo "$repo:$Tags"
+#    - sudo docker login -u "$USER" -p "$PASSWD" $registry
+#    - sudo docker build --pull -t "$repo:$Tags" .
+#    - docker push "$repo:$Tags"
+#    - sudo docker rmi -f "$repo:$Tags"
+  tags:
+    - devops
+# 升级rancher服务
+#release:
+#  stage: release
+#  script:
+#    - sh update.sh $Webhook $repo
