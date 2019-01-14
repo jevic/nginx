@@ -11,10 +11,10 @@ build:
     - docker --version
     - uname -a
     - echo "$registry/$repo:$Tags"
-    - sudo docker login -u "$USER" -p "$PASSWD" $registry
-#    - sudo docker build --pull -t "$registry/$repo:$Tags" .
+    - docker login -u "$USER" -p "$PASSWD" $registry
+#    - docker build --pull -t "$registry/$repo:$Tags" .
 #    - docker push "$registry/$repo:$Tags"
-#    - sudo docker rmi -f "$registry/$repo:$Tags"
+#    - docker rmi -f "$registry/$repo:$Tags"
   tags:
     - devops
 # 升级rancher服务
