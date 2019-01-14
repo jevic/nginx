@@ -1,5 +1,6 @@
 variables:
   Tags: v1
+  app: nginx
 
 stages:
   - build
@@ -10,7 +11,8 @@ build:
   script:
     - docker --version
     - uname -a
-    - echo "$registry/$repo:$Tags"
+    - Image="$registry/$repo/$app:$Tags"
+    - echo $Image
     - docker login -u "$USER" -p "$PASSWD" $registry
 #    - docker build --pull -t "$registry/$repo:$Tags" .
 #    - docker push "$registry/$repo:$Tags"
