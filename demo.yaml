@@ -1,20 +1,12 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: demo-cicd
+  name: myapp2
+  labels:
+    app: myapp2
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: demo-cicd
-  template:
-    metadata:
-      labels:
-        app: demo-cicd
-    spec:
-      containers:
-      - name: demo-cicd
-        image: jevic/demo:latest
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 80
+  containers:
+  - name: myapp2
+    image: jevic/app:v1
+    ports:
+    - containerPort: 80
