@@ -19,7 +19,7 @@ build:
 #    - sudo docker rmi -f "$registry/$repo:$Tags"
   tags:
     - devops
-# 升级rancher服务
+## 升级rancher服务
 #release:
 #  stage: release
 #  script:
