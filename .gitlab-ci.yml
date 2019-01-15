@@ -14,9 +14,9 @@ build:
     - Image="$registry/$repo/$app:$Tags"
     - echo $Image
     - sudo docker login -u "$USER" -p "$PASSWD" $registry
-#    - sudo docker build --pull -t "$registry/$repo:$Tags" .
-#    - sudo docker push "$registry/$repo:$Tags"
-#    - sudo docker rmi -f "$registry/$repo:$Tags"
+    - sudo docker build --pull -t $Image .
+    - sudo docker push $Image
+    - sudo docker rmi -f $Image
   tags:
     - hub.jevic.io
 ## 升级rancher服务
