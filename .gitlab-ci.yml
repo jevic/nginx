@@ -25,7 +25,7 @@ variables:
 
 stages:
   - build
-  - release
+#  - release
 # 构建镜像
 build:
   stage: build
@@ -34,6 +34,7 @@ build:
     - uname -a
     - Image="$registry/$repo/$app:$Tags"
     - echo $Image
+    - curl -X POST -H 'Content-Type: application/yaml' http://192.168.2.68:9090/api/v1/namespaces/default/pods -d "$(cat demo.yaml)"
 #    - sudo docker login -u "$USER" -p "$PASSWD" $registry
 #    - sudo docker build --pull -t $Image .
 #    - sudo docker push $Image
@@ -42,7 +43,7 @@ build:
     - hub.jevic.io
 
 ## deployment
-release:
-  stage: release
-  script:
-    - curl -X POST -H 'Content-Type: application/yaml' http://192.168.2.68:9090/api/v1/namespaces/default/pods -d "$(cat demo.yaml)"
+#release:
+#  stage: release
+#  script:
+#    - curl -X POST -H 'Content-Type: application/yaml' http://192.168.2.68:9090/api/v1/namespaces/default/pods -d "$(cat demo.yaml)"
