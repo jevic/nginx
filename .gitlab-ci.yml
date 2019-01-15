@@ -1,6 +1,27 @@
 variables:
   Tags: v1
   app: nginx
+  web: |
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: demo-deploy1
+  spec:
+    replicas: 3
+    selector:
+      matchLabels:
+        app: demo-c
+    template:
+      metadata:
+        labels:
+          app: demo-c
+      spec:
+        containers:
+        - name: demo-c
+          image: jevic/demo:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 80
 
 stages:
   - build
@@ -13,10 +34,11 @@ build:
     - uname -a
     - Image="$registry/$repo/$app:$Tags"
     - echo $Image
-    - sudo docker login -u "$USER" -p "$PASSWD" $registry
-    - sudo docker build --pull -t $Image .
-    - sudo docker push $Image
-    - sudo docker rmi -f $Image
+    - echo $web
+#    - sudo docker login -u "$USER" -p "$PASSWD" $registry
+#    - sudo docker build --pull -t $Image .
+#    - sudo docker push $Image
+#    - sudo docker rmi -f $Image
   tags:
     - hub.jevic.io
 ## 升级rancher服务
