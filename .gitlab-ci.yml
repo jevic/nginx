@@ -2,26 +2,26 @@ variables:
   Tags: v1
   app: nginx
   web: |
-  apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    name: demo-deploy1
-  spec:
-    replicas: 3
-    selector:
-      matchLabels:
-        app: demo-c
-    template:
-      metadata:
-        labels:
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: demo-deploy1
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
           app: demo-c
-      spec:
-        containers:
-        - name: demo-c
-          image: jevic/demo:latest
-          imagePullPolicy: IfNotPresent
-          ports:
-          - containerPort: 80
+      template:
+        metadata:
+          labels:
+            app: demo-c
+        spec:
+          containers:
+          - name: demo-c
+            image: jevic/demo:latest
+            imagePullPolicy: IfNotPresent
+            ports:
+            - containerPort: 80
 
 stages:
   - build
