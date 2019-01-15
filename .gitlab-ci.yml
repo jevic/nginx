@@ -18,7 +18,7 @@ build:
 #    - sudo docker push "$registry/$repo:$Tags"
 #    - sudo docker rmi -f "$registry/$repo:$Tags"
   tags:
-    - devops
+    - hub.jevic.io
 ## 升级rancher服务
 #release:
 #  stage: release
