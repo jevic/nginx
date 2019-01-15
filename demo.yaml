@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-cicd
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demo-cicd
+  template:
+    metadata:
+      labels:
+        app: demo-cicd
+    spec:
+      containers:
+      - name: demo-cicd
+        image: jevic/demo:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
