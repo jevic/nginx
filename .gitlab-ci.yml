@@ -2,7 +2,7 @@ variables:
   Tags: v1
   app: nginx
   web: |
-    apiVersion: apps/v1
+    "apiVersion: apps/v1
     kind: Deployment
     metadata:
       name: demo-deploy1
@@ -21,7 +21,7 @@ variables:
             image: jevic/demo:latest
             imagePullPolicy: IfNotPresent
             ports:
-            - containerPort: 80
+            - containerPort: 80"
 
 stages:
   - build
@@ -34,7 +34,7 @@ build:
     - uname -a
     - Image="$registry/$repo/$app:$Tags"
     - echo $Image
-    - echo $web
+    - echo -e $web
 #    - sudo docker login -u "$USER" -p "$PASSWD" $registry
 #    - sudo docker build --pull -t $Image .
 #    - sudo docker push $Image
