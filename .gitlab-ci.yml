@@ -43,7 +43,6 @@ build:
     #- sudo docker build --pull -t $Image .
     #- sudo docker push $Image
     #- sudo docker rmi -f $Image
-    - echo $TEMPLATE_YAML
     - /bin/sed -i "s#IMAGE#$Image#g" `echo $TEMPLATE_YAML`
     - cat $TEMPLATE_YAML
   tags:
