@@ -42,10 +42,8 @@ build:
     #- sudo docker build --pull -t $Image .
     #- sudo docker push $Image
     #- sudo docker rmi -f $Image
-    - /bin/sed "s#IMAGE#$Image#g" `echo $Template` >> deployment.yaml
-    - /bin/sed -i "s#IMAGE#$Image#g" `echo $Template`
-    - cat $Template
-    - ls *
+    #- /bin/sed "s#IMAGE#$Image#g" `echo $Template` >> deployment.yaml
+    #- /bin/sed -i "s#IMAGE#$Image#g" `echo $Template`
   tags:
     - hub.jevic.io
 
@@ -55,7 +53,10 @@ release:
   only:
     - master
   script:
+    - Image="$registry/$repo/$app:$Tags"
+    - /bin/sed "s#IMAGE#$Image#g" `echo $Template` >> deployment.yaml
     - ls *
+    - cat deployment.yaml
     #- sh deploy.sh
     #- echo deploy.sh
   tags:
