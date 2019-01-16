@@ -39,9 +39,9 @@ build:
     - uname -a
     - Image="$registry/$repo/$app:$Tags"
     - echo $Image
-    - sudo docker build --pull -t $Image .
-    - sudo docker push $Image
-    - sudo docker rmi -f $Image
+    #- sudo docker build --pull -t $Image .
+    #- sudo docker push $Image
+    #- sudo docker rmi -f $Image
     - /bin/sed -i "s#IMAGE#$Image#g" template_demo.yaml
   tags:
     - hub.jevic.io
