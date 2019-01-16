@@ -1,28 +1,12 @@
 ## 定义变量
 variables:
-  Tags: v2
+  Tags: v4
   app: nginx
   web: |
     apiVersion: apps/v1
     kind: Deployment
     metadata:
       name: demo-deploy1
-    spec:
-      replicas: 3
-      selector:
-        matchLabels:
-          app: demo-c
-      template:
-        metadata:
-          labels:
-            app: demo-c
-        spec:
-          containers:
-          - name: demo-c
-            image: jevic/demo:latest
-            imagePullPolicy: IfNotPresent
-            ports:
-            - containerPort: 80
 
 ## 执行前动作
 before_script:
@@ -52,15 +36,13 @@ build:
   only:
     - master
   script:
-    - docker --version
     - uname -a
     - Image="$registry/$repo/$app:$Tags"
     - echo $Image
-#    - sudo docker build --pull -t $Image .
-#    - sudo docker push $Image
-#    - sudo docker rmi -f $Image
+    - sudo docker build --pull -t $Image .
+    - sudo docker push $Image
+    - sudo docker rmi -f $Image
     - /bin/sed -i "s#IMAGE#$Image#g" template_demo.yaml
-#    - cat template_demo.yaml|sed -i "s/IMAGE/$Image/g"
   tags:
     - hub.jevic.io
 
@@ -70,7 +52,6 @@ release:
   only:
     - master
   script:
-#    - sh update.sh
-    - echo update.sh
+    - sh update.sh
   tags:
     - hub.jevic.io
