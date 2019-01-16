@@ -1,7 +1,8 @@
 ## 定义变量
 variables:
-  Tags: v4
+  Tags: v1
   app: nginx
+  TEMPLATE_YAML: deploy_tempate_demo.yaml
   web: |
     apiVersion: apps/v1
     kind: Deployment
@@ -42,7 +43,7 @@ build:
     #- sudo docker build --pull -t $Image .
     #- sudo docker push $Image
     #- sudo docker rmi -f $Image
-    - /bin/sed -i "s#IMAGE#$Image#g" template_demo.yaml
+    - /bin/sed -i "s#IMAGE#$Image#g" $TEMPLATE_YAML
   tags:
     - hub.jevic.io
 
@@ -52,6 +53,6 @@ release:
   only:
     - master
   script:
-    - sh update.sh
+    - sh deploy.sh
   tags:
     - hub.jevic.io

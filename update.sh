@@ -1,8 +1,8 @@
 #!/bin/sh
-#curl -X POST -H 'Content-Type: application/yaml' http://192.168.2.68:9090/api/v1/namespaces/default/pods -d "$(cat template_demo.yaml)"
+TEMPLATE_YAML=deploy_tempate_demo.yaml
+#curl -X POST -H 'Content-Type: application/yaml' http://192.168.2.68:9090/api/v1/namespaces/default/pods -d "$(cat $TEMPLATE_YAML)"
 curl -sL http://192.168.2.68:9090/api/v1/namespaces/default/pods -o /dev/null
 code=$?
-code=1
 echo ""
 echo "====================================="
 echo $code
