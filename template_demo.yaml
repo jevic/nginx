@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: myapp2
+  name: myapp-cicd
   labels:
-    app: myapp2
+    app: myapp-cicd
 spec:
   containers:
-  - name: myapp2
-    image: IMAGE
+  - name: myapp-cicd
+    image: hub.jevic.io/demo/nginx:v2
     ports:
     - containerPort: 80

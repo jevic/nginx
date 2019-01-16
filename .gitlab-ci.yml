@@ -1,6 +1,6 @@
 ## 定义变量
 variables:
-  Tags: v3
+  Tags: v2
   app: nginx
   web: |
     apiVersion: apps/v1
@@ -59,7 +59,7 @@ build:
     - sudo docker build --pull -t $Image .
     - sudo docker push $Image
     - sudo docker rmi -f $Image
-    - sed -i \"s/IMAGE/$Image/g\" template_demo.yaml
+#    - sed -i \"s/IMAGE/$Image/g\" template_demo.yaml
   tags:
     - hub.jevic.io
 
