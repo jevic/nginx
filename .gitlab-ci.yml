@@ -42,7 +42,7 @@ build:
     #- sudo docker push $Image
     #- sudo docker rmi -f $Image
     - /bin/sed -i "s#IMAGE#$Image#g" deploy_tempate_demo.yaml
-    - echo deploy_tempate_demo.yaml
+    - cat deploy_tempate_demo.yaml
   tags:
     - hub.jevic.io
 
