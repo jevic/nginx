@@ -12,8 +12,6 @@ variables:
 ## 执行前动作
 before_script:
   - sudo docker version
-  - sudo docker info
-  - sudo docker login -u "$USER" -p "$PASSWD" $registry
 
 ## 执行步骤
 stages:
@@ -40,6 +38,7 @@ build:
     - uname -a
     - Image="$registry/$repo/$app:$Tags"
     - echo $Image
+    #- sudo docker login -u "$USER" -p "$PASSWD" $registry
     #- sudo docker build --pull -t $Image .
     #- sudo docker push $Image
     #- sudo docker rmi -f $Image
