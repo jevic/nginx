@@ -54,7 +54,8 @@ release:
   only:
     - master
   script:
-    - sh deploy.sh
+    - ls *
+    #- sh deploy.sh
     #- echo deploy.sh
   tags:
     - hub.jevic.io
