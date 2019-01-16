@@ -2,6 +2,7 @@
 variables:
   Tags: v1
   app: nginx
+  Template: deploy_template.yaml
   web: |
     apiVersion: apps/v1
     kind: Deployment
@@ -41,8 +42,8 @@ build:
     #- sudo docker build --pull -t $Image .
     #- sudo docker push $Image
     #- sudo docker rmi -f $Image
-    - /bin/sed -i "s#IMAGE#$Image#g" deploy_tempate_demo.yaml
-    - cat deploy_tempate_demo.yaml
+    - /bin/sed -i "s#IMAGE#$Image#g" $Template > deployment.yaml
+    - cat deployment.yaml
   tags:
     - hub.jevic.io
 
