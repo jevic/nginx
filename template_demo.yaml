@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
   - name: myapp-cicd
-    image: hub.jevic.io/demo/nginx:v2
+    image: IMAGE
     ports:
     - containerPort: 80

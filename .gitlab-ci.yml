@@ -56,10 +56,11 @@ build:
     - uname -a
     - Image="$registry/$repo/$app:$Tags"
     - echo $Image
-    - sudo docker build --pull -t $Image .
-    - sudo docker push $Image
-    - sudo docker rmi -f $Image
-#    - sed -i \"s/IMAGE/$Image/g\" template_demo.yaml
+#    - sudo docker build --pull -t $Image .
+#    - sudo docker push $Image
+#    - sudo docker rmi -f $Image
+    - /bin/sed -i "s#IMAGE#$Image#g" template_demo.yaml
+#    - cat template_demo.yaml|sed -i "s/IMAGE/$Image/g"
   tags:
     - hub.jevic.io
 
@@ -69,6 +70,7 @@ release:
   only:
     - master
   script:
-    - sh update.sh
+#    - sh update.sh
+    - echo update.sh
   tags:
     - hub.jevic.io
