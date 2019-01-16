@@ -43,7 +43,8 @@ build:
     #- sudo docker build --pull -t $Image .
     #- sudo docker push $Image
     #- sudo docker rmi -f $Image
-    - /bin/sed -i "s#IMAGE#$Image#g" $TEMPLATE_YAML
+    - echo $TEMPLATE_YAML
+#    - /bin/sed -i "s#IMAGE#$Image#g" $TEMPLATE_YAML
   tags:
     - hub.jevic.io
 
@@ -53,6 +54,7 @@ release:
   only:
     - master
   script:
-    - sh deploy.sh
+    #- sh deploy.sh
+    - echo deploy.sh
   tags:
     - hub.jevic.io
