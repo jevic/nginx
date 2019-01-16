@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
   - name: myapp2
-    image: jevic/app:v1
+    image: IMAGE
     ports:
     - containerPort: 80

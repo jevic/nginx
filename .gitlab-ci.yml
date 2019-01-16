@@ -1,5 +1,6 @@
+## 定义变量
 variables:
-  Tags: v1
+  Tags: v3
   app: nginx
   web: |
     apiVersion: apps/v1
@@ -23,28 +24,51 @@ variables:
             ports:
             - containerPort: 80
 
+## 执行前动作
+before_script:
+  - sudo docker version
+  - sudo docker info
+  - sudo docker login -u "$USER" -p "$PASSWD" $registry
+
+## 执行步骤
 stages:
+  - test
   - build
-#  - release
-# 构建镜像
+  - release
+
+## 测试
+test:
+  stage: test
+  only:
+    - master
+  script:
+    - echo "------  test. ------"
+  tags:
+    - hub.jevic.io
+
+## 构建应用
 build:
   stage: build
+  only:
+    - master
   script:
     - docker --version
     - uname -a
     - Image="$registry/$repo/$app:$Tags"
     - echo $Image
-    - sh update.sh
-#    - /bin/sh curl -X POST -H 'Content-Type: application/yaml' http://192.168.2.68:9090/api/v1/namespaces/default/pods -d "$(cat demo.yaml)"
-#    - sudo docker login -u "$USER" -p "$PASSWD" $registry
-#    - sudo docker build --pull -t $Image .
-#    - sudo docker push $Image
-#    - sudo docker rmi -f $Image
+    - sudo docker build --pull -t $Image .
+    - sudo docker push $Image
+    - sudo docker rmi -f $Image
+    - sed -i "s/IMAGE/$Image/g" template_demo.yaml
   tags:
     - hub.jevic.io
 
-## deployment
-#release:
-#  stage: release
-#  script:
-#    - sh update.sh
+## deployment to kubernetes
+release:
+  stage: release
+  only:
+    - master
+  script:
+    - sh update.sh
+  tags:
+    - hub.jevic.io
