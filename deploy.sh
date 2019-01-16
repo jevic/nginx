@@ -1,6 +1,6 @@
 #!/bin/sh
-TEMPLATE_YAML=deploy_tempate_demo.yaml
-curl -X POST -H 'Content-Type: application/yaml' http://192.168.2.68:9090/apis/apps/v1/namespaces/default/deployments -d "$(cat $TEMPLATE_YAML)"
+
+curl -X POST -H 'Content-Type: application/yaml' http://192.168.2.68:9090/apis/apps/v1/namespaces/default/deployments -d "$(cat deploy_tempate_demo.yaml)"
 
 code=$?
 echo ""
