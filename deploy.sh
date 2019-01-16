@@ -1,6 +1,5 @@
 #!/bin/sh
-cat deployment.yaml
-#curl -X POST -H 'Content-Type: application/yaml' http://192.168.2.68:9090/apis/apps/v1/namespaces/default/deployments -d "$(cat deployment.yaml)"
+curl -X POST -H 'Content-Type: application/yaml' http://192.168.2.68:9090/apis/apps/v1/namespaces/default/deployments -d "$(cat deployment.yaml)"
 
 code=$?
 echo ""
