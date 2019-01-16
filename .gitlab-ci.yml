@@ -44,7 +44,7 @@ build:
     #- sudo docker rmi -f $Image
     - /bin/sed -i "s#IMAGE#$Image#g" `echo $Template`
     - cat $Template
-    - cat $Template > deployment.yaml
+    - cp -a $Template deployment.yaml
   tags:
     - hub.jevic.io
 
