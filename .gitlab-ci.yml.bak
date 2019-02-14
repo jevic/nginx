@@ -8,7 +8,6 @@ variables:
     kind: Deployment
     metadata:
       name: demo-deploy1
-image: jevic/app:v1
 
 ## 执行前动作
 before_script:
@@ -18,6 +17,7 @@ before_script:
 stages:
   - test
   - build
+  - release
 
 ## 测试
 test:
@@ -26,7 +26,6 @@ test:
     - master
   script:
     - echo "------  test. ------"
-    - echo "{CI_JOB_NAME}_${CI_COMMIT_REF_NAME}"
   tags:
     - hub.jevic.io
 
@@ -39,5 +38,21 @@ build:
     - uname -a
     - Image="$registry/$repo/$app:$Tags"
     - echo $Image
+    #- sudo docker login -u "$USER" -p "$PASSWD" $registry
+    #- sudo docker build --pull -t $Image .
+    #- sudo docker push $Image
+    #- sudo docker rmi -f $Image
+  tags:
+    - hub.jevic.io
+
+## deployment to kubernetes
+release:
+  stage: release
+  only:
+    - master
+  script:
+    - Image="$registry/$repo/$app:$Tags"
+    - /bin/sed "s#IMAGE#$Image#g" `echo $Template` >> deployment.yaml
+    - sh deploy.sh
   tags:
     - hub.jevic.io
